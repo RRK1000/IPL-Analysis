@@ -14,6 +14,9 @@ def checkCentroidsDistance(centroids, centroids1):
             # f3y = abs(centroids[2][1] - centroids1[2][1])<1
 
             fl = f1x and f1y
+            if not fl:
+                print(0)
+                break
             i+=1
     except IndexError:
         if fl:

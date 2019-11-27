@@ -29,7 +29,6 @@ def getCentroids(filepath):
 
 # create clusters based on initial centroids
 def createClusters(centroids):
-    # lineop = []
     
     for line in sys.stdin:
         line = line.strip()
@@ -55,15 +54,10 @@ def createClusters(centroids):
             if cur_dist <= min_dist:
                 min_dist = cur_dist
                 index = centroids.index(centroid)
-
-        # lineop.append([index,cord[1], cord[2]])
-
-        var = "%s\t%s\t%s" % (index, cord[1], cord[2])
+        
+        var = "%s\t%s\t%s\t%s" % (index, cord[0], cord[1], cord[2])
         print(var)
-    
-    # finalop = sorted(lineop, key = lambda x: x[0])
-    # for op in finalop:
-    #     print(str(op[0]) +"\t" +str(op[1]) +"\t" +str(op[2]))
+
 
 if __name__ == "__main__":
     centroids = getCentroids('centroids.txt')

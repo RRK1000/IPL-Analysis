@@ -10,6 +10,7 @@ do
 	then
 		rm centroids.txt
 		hadoop fs -copyToLocal /tmp/output$i/part-00000 centroids.txt
+		python mapper.py < batsmandata.csv > batsmanfinalclusters.txt
 		break
 	else
 		rm centroids.txt

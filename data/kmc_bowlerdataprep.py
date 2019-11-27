@@ -23,9 +23,9 @@ for line in infile:
             balls = overs*6 + ext
 
             if data[6] == "-":
-                fp.write(data[0] +",0," +str(balls) +",1\n")
+                fp.write(data[0] +",0," +str(balls) +"\n")
             else:
-                fp.write(data[0] +"," +data[6] +"," +str(balls) +",1\n")
+                fp.write(data[0] +"," +data[6] +"," +str(balls) +"\n")
     else:
         a = 1
 

@@ -12,7 +12,7 @@ def calculateNewCentroids():
     for line in sys.stdin:
 
         # parse the input of mapper.py
-        centroid_index, x, y = line.split('\t')
+        centroid_index, bname, x, y = line.split('\t')
 
         try:
             x = float(x)
