@@ -15,7 +15,7 @@ We also use collaborative filtering to predict the probabilities for unseen bats
 
 ## **Running the code**
 * The first files to be generated are the data files using the codes in `/data/`
-* All the code is available in `/src/` . The way to execute is, first run `createcentroids.py` and then execute `./run.sh` . This runs the k-means code using MapReduce.
+* All the code is available in `/src/` . The way to execute is, execute `./run.sh` from both, the batsmen and bowler directories. This runs the k-means code using MapReduce.
 * [IMPLEMENT COLLABORATIVE FILTERING]
 * [IMPLEMENT PROBABILITY CALCULATION]
 * [IMPLEMENT MATCH SIMULATION]
