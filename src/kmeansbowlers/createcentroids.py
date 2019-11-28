@@ -8,7 +8,7 @@ count = 0
 for line in fd.readlines():
     line = line.split(",")
     for i in range(1,3):
-        line[i] = int(line[i])
+        line[i] = int(float(line[i].rstrip("\n")))
     if line[1] > maxa:
         maxa = line[1]
     if line[2] > maxb:
