@@ -13,11 +13,11 @@ for line in infile:
         if data[0][0] != "(":
             if data[4] == "-":
                 if data[7] == "-":
-                    fp.write(data[0] +",0,0\n")
+                    fp.write(data[0] + ",0,0\n")
                 else:
-                    fp.write(data[0] +",0," +data[7] +"\n")
+                    fp.write(data[0] + ",0," + data[7] + "\n")
             else:
-                fp.write(data[0] +"," +data[4] +"," +data[7] +"\n")
+                fp.write(data[0] + "," + data[4] + "," + data[7] + "\n")
     else:
         a = 1
 

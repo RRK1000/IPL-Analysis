@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 from scipy.spatial import distance
 
-centroids=[]
+centroids = []
 
 # initiliaze list for points
-X=[[[],[]],[[],[]],[[],[]]]
+X = [[[], []], [[], []], [[], []]]
 # initiliaze list for centroids
-M=[[],[]]
+M = [[], []]
 
 # import centroids.txt file
 filepath = 'centroids.txt'
