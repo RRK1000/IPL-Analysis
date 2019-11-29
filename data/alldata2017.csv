@@ -249,7 +249,7 @@ ball,2,19.4,Royal Challengers Bangalore,A Choudhary,YS Chahal,BCJ Cutting,0,0,ru
 ball,1,0.1,Mumbai Indians,PA Patel,JC Buttler,AB Dinda,0,1
 ball,1,0.2,Mumbai Indians,PA Patel,JC Buttler,AB Dinda,0,0
 ball,1,0.3,Mumbai Indians,PA Patel,JC Buttler,AB Dinda,1,0
-ball,1,0.4,Mumbai Indians,JC Buttler,PA (",".join(line)).rstrip("\",\"\n")Patel,AB Dinda,5,0
+ball,1,0.4,Mumbai Indians,JC Buttler,PA Patel,AB Dinda,5,0
 ball,1,0.5,Mumbai Indians,PA Patel,JC Buttler,AB Dinda,4,0
 ball,1,0.6,Mumbai Indians,PA Patel,JC Buttler,AB Dinda,0,0
 ball,1,0.7,Mumbai Indians,PA Patel,JC Buttler,AB Dinda,0,0

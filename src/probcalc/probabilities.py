@@ -1,4 +1,4 @@
-data = open("../../data/alldata.csv", "r")
+data = open("../../data/alldata2017.csv", "r")
 badata = open("../batsmanKMeansOutput.txt", "r")
 bodata = open("../bowlerKMeansOutput.txt", "r")
 
@@ -32,13 +32,12 @@ for line in data.readlines():
         batsman = line[4]
         bowler = line[6]
         
-        if line[10]=="\"\"":
+        try:
+            if line[10]:
+                finalprobs[(batsmenclusters[batsman],bowlerclusters[bowler])]["W"] = finalprobs[(batsmenclusters[batsman],bowlerclusters[bowler])]["W"] + 1
+        except IndexError:
             runs = int(line[7])
-            print("Adding to " +str(runs) +" of " +str(batsmenclusters[batsman]) +str(bowlerclusters[bowler]))
             finalprobs[(batsmenclusters[batsman],bowlerclusters[bowler])][runs] = finalprobs[(batsmenclusters[batsman],bowlerclusters[bowler])][runs] + 1
-        else:
-            print("Adding W to " +str(batsmenclusters[batsman]) +str(bowlerclusters[bowler]))
-            finalprobs[(batsmenclusters[batsman],bowlerclusters[bowler])]["W"] = finalprobs[(batsmenclusters[batsman],bowlerclusters[bowler])]["W"] + 1
         
         finalprobs[(batsmenclusters[batsman],bowlerclusters[bowler])]["B"] = finalprobs[(batsmenclusters[batsman],bowlerclusters[bowler])]["B"] + 1
 
