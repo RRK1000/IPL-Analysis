@@ -1,6 +1,8 @@
 #!/bin/bash
 i=1
 python createcentroids.py
+hadoop fs -rm -r /tmp/batsmandata.csv
+hadoop fs -put batsmandata.csv /tmp
 while :
 do
 	$HADOOP_HOME/bin/hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.2.0.jar -file centroids.txt -file ./mapper.py -mapper ./mapper.py -file ./reducer.py -reducer ./reducer.py -input /tmp/batsmandata.csv -output /tmp/output$i

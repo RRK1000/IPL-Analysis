@@ -15,7 +15,7 @@ for line in fd.readlines():
         maxb = line[2]
     count += 1
 
-k = count**0.5
+k = 10
 amultiple = maxa/k
 bmultiple = maxb/k
 for i in range(1, int(k)):

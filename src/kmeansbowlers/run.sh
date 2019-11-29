@@ -1,6 +1,8 @@
 #!/bin/bash
 i=1
 python createcentroids.py
+hadoop fs -rm -r /tmp/bowlerdata.csv
+hadoop fs -put bowlerdata.csv /tmp
 while :
 do
 	hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.2.0.jar -file centroids.txt -file ./mapper.py -mapper ./mapper.py -file ./reducer.py -reducer ./reducer.py -input /tmp/bowlerdata.csv -output /tmp/output$i
