@@ -55,8 +55,23 @@ def getKMeansClusters():
     
     for key in probs.keys():
         for i in range(7):
-            probability = probs[key][i]/probs[key]["B"]
-            probs[key][i] = probability
+            probs[key][i] = probs[key][i]/probs[key]["B"]
+        
+        sumprobs = 0.0
+        for i in range(7):
+            sumprobs += probs[key][i]
+        for i in range(7):
+            probs[key][i] = probs[key][i]/sumprobs
+        
+        newsum = 0
+        for i in range(6):
+            newsum += probs[key][i]
+        probs[key][7] = 1 - newsum
+        newsum += probs[key][7]
+
         probs[key]["W"] = probs[key]["W"]/probs[key]["B"]
+        # print(newsum)
         
     return probs
+
+# getKMeansClusters()

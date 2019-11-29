@@ -22,8 +22,26 @@ def generateProbabilities():
     for i in range(length):
         batsman = lines0[i].split(',')[0]
         bowler = lines0[i].split(',')[1]
-        finalProb[(batsman, bowler)] = {0: abs(float(lines0[i].split(',')[2])), 1: abs(float(lines1[i].split(',')[2])), 2: abs(float(lines2[i].split(',')[2])), 3: abs(float(lines3[i].split(
-            ',')[2])), 4: abs(float(lines4[i].split(',')[2])), 5: abs(float(lines5[i].split(',')[2])), 6: abs(float(lines6[i].split(',')[2])), "W": abs(float(linesw[i].split(',')[2]))}
+
+        p0 = abs(float(lines0[i].split(',')[2]))
+        p1 = abs(float(lines1[i].split(',')[2]))
+        p2 = abs(float(lines2[i].split(',')[2]))
+        p3 = abs(float(lines3[i].split(',')[2]))
+        p4 = abs(float(lines4[i].split(',')[2]))
+        p5 = abs(float(lines5[i].split(',')[2]))
+        p6 = abs(float(lines6[i].split(',')[2]))
+        pw = abs(float(linesw[i].split(',')[2]))
+
+        probslist = [p0,p1,p2,p3,p4,p5,p6]
+        
+        for i in range(6):
+            probslist[i] = probslist[i]/sum(probslist)
+        
+        probslist[6] = 1 - sum(probslist[:6])
+
+        for i in range(7):
+            finalProb[(batsman, bowler)][i] = probslist[i]
+        finalProb[(batsman, bowler)]["W"] = pw
 
     d0.close()
     d1.close()
