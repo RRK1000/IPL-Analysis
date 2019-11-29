@@ -2,8 +2,8 @@ import time
 
 def getKMeansClusters():
     data = open("../../data/alldata2017.csv", "r")
-    batsmanData = open("../batsmanKMeansOutput.txt", "r")
-    bowlerData = open("../bowlerKMeansOutput.txt", "r")
+    batsmanData = open("../../batsmanKMeansOutput.txt", "r")
+    bowlerData = open("../../bowlerKMeansOutput.txt", "r")
 
     batsmenclusters = dict()
     bowlerclusters = dict()

@@ -1,6 +1,6 @@
 fp = open("alldata.csv", "r")
 
-fp1 = open("alldata2017.csv","w+")
+fp1 = open("alldata2017.csv","w")
 
 flag = 0
 for line in fp.readlines():
