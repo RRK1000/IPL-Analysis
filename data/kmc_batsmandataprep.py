@@ -4,20 +4,20 @@ infile = sys.stdin
 
 # distance based on (runs, balls)
 
-fp = open("batsmandata.csv", "w+")
+fp = open("../src/kmeansbatsmen/batsmandata.csv", "w+")
 a = 0
 
 for line in infile:
     if a == 1:
         data = line.split(",")
         if data[0][0] != "(":
-            if data[4] == "-":
-                if data[7] == "-":
+            if data[6] == "-":
+                if data[8] == "-":
                     fp.write(data[0] + ",0,0\n")
                 else:
-                    fp.write(data[0] + ",0," + data[7] + "\n")
+                    fp.write(data[0] + ",0," + data[8] + "\n")
             else:
-                fp.write(data[0] + "," + data[4] + "," + data[7] + "\n")
+                fp.write(data[0] + "," + data[6] + "," + data[8] + "\n")
     else:
         a = 1
 

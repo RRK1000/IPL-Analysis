@@ -1,9 +1,11 @@
 #!/bin/bash
 i=1
-python3 createcentroids.py
+python createcentroids.py
+hadoop fs -rm -r /tmp/bowlerdata.csv
+hadoop fs -put bowlerdata.csv /tmp
 while :
 do
-	hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.2.0.jar -file centroids.txt -file ./mapper.py -mapper ./mapper.py -file ./reducer.py -reducer ./reducer.py -input /user/hadoop/input/bowlerdata.csv -output /tmp/output$i
+	hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.2.0.jar -file centroids.txt -file ./mapper.py -mapper ./mapper.py -file ./reducer.py -reducer ./reducer.py -input /tmp/bowlerdata.csv -output /tmp/output$i
 	rm -f centroids1.txt
 	hadoop fs -copyToLocal /tmp/output$i/part-00000 centroids1.txt
 	seeiftrue=`python3 reader.py`
@@ -11,7 +13,7 @@ do
 	then
 		rm centroids.txt
 		hadoop fs -copyToLocal /tmp/output$i/part-00000 centroids.txt
-		python3 mapper.py < bowlerdata.csv > ../bowlerKMeansOutput.txt
+		python mapper.py < bowlerdata.csv > ../bowlerKMeansOutput.txt
 		hadoop fs -rm -r /tmp/output*
 		break
 	else
