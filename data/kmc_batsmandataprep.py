@@ -4,7 +4,7 @@ infile = sys.stdin
 
 # distance based on (runs, balls)
 
-fp = open("batsmandata.csv", "w+")
+fp = open("../src/kmeansbatsmen/batsmandata.csv", "w+")
 a = 0
 
 for line in infile:
