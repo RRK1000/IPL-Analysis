@@ -45,9 +45,14 @@ for line in data.readlines():
         finalprobs[(batsmenclusters[batsman], bowlerclusters[bowler])]["B"] = finalprobs[(
             batsmenclusters[batsman], bowlerclusters[bowler])]["B"] + 1
 
-for key in finalprobs.keys():
-    # print(str(key[0])+','+str(key[1])+',' + str(float(finalprobs[key][0])/float(finalprobs[key]["B"]))+',' + str(float(finalprobs[key][1])/float(finalprobs[key]["B"]))+',' + str(float(finalprobs[key][2])/float(finalprobs[key]["B"]))+',' + str(float(finalprobs[key][3])/float(
-    #     finalprobs[key]["B"]))+',' + str(float(finalprobs[key][4])/float(finalprobs[key]["B"])) +','+ str(float(finalprobs[key][5])/float(finalprobs[key]["B"])) +','+ str(float(finalprobs[key][6])/float(finalprobs[key]["B"])) +','+ str(float(finalprobs[key]["W"])/float(finalprobs[key]["B"])))
-    fp.write(str(key[0])+','+str(key[1])+',' + str(float(finalprobs[key][0])/float(finalprobs[key]["B"]))+',' + str(float(finalprobs[key][1])/float(finalprobs[key]["B"]))+',' + str(float(finalprobs[key][2])/float(finalprobs[key]["B"]))+',' + str(float(finalprobs[key][3])/float(
-        finalprobs[key]["B"]))+',' + str(float(finalprobs[key][4])/float(finalprobs[key]["B"])) + ',' + str(float(finalprobs[key][5])/float(finalprobs[key]["B"])) + ',' + str(float(finalprobs[key][6])/float(finalprobs[key]["B"])) + ',' + str(float(finalprobs[key]["W"])/float(finalprobs[key]["B"])) + '\n')
-    # print(key, finalprobs[key])
+# for key in finalprobs.keys():
+#     fp.write(str(key[0])+','+str(key[1])+',' + str(float(finalprobs[key][0])/float(finalprobs[key]["B"]))+',' + str(float(finalprobs[key][1])/float(finalprobs[key]["B"]))+',' + str(float(finalprobs[key][2])/float(finalprobs[key]["B"]))+',' + str(float(finalprobs[key][3])/float(
+#         finalprobs[key]["B"]))+',' + str(float(finalprobs[key][4])/float(finalprobs[key]["B"])) + ',' + str(float(finalprobs[key][5])/float(finalprobs[key]["B"])) + ',' + str(float(finalprobs[key][6])/float(finalprobs[key]["B"])) + ',' + str(float(finalprobs[key]["W"])/float(finalprobs[key]["B"])) + '\n')
+
+probs = dict()
+for batsman in batsmenclusters.keys():
+    for bowler in bowlerclusters.keys():
+        probs[(batsman,bowler)] = finalprobs[(batsmenclusters[batsman]), bowlerclusters[bowler]]
+
+for key in probs.keys():
+    print(key, probs[key])
