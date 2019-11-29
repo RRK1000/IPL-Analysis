@@ -17,7 +17,7 @@ batting_index = 1
 cur_bowl = bowlerOrder[0]
 bowler_index = 0
 
-probabilities = getKMeansClusters()
+probabilities = generateProbabilities()
 
 while(wickets<=10 and numberOfBalls<=120):
     r = random.randint(0,1)
