@@ -2,7 +2,7 @@ import sys
 import csv
 infile = sys.stdin
 
-# distance based on (wickets, balls)
+# distance based on (wickets, econ)
 
 fp = open("../src/kmeansbowlers/bowlerdata.csv", "w+")
 a = 0

@@ -3,12 +3,13 @@
 
 import sys
 
+
 def calculateNewCentroids():
     current_centroid = None
     sum_x = 0
     sum_y = 0
     count = 0
-    
+
     for line in sys.stdin:
 
         # parse the input of mapper.py
@@ -32,15 +33,16 @@ def calculateNewCentroids():
             if count != 0:
                 # print the average of every cluster to get new centroids
                 print(str(sum_x / count) + ", " + str(sum_y / count))
-            
+
             current_centroid = centroid_index
             sum_x = x
             sum_y = y
             count = 1
-    
+
     # print last cluster's centroids
     if current_centroid == centroid_index and count != 0:
         print(str(sum_x / count) + ", " + str(sum_y / count))
+
 
 if __name__ == "__main__":
     calculateNewCentroids()
