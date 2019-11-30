@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 """mapper.py"""
 
+"""
+This is the mapper file
+It takes in the batsman data file as input and generates the output in the following format:
+cluster_id  batsman_name    param1  param2
+"""
+
 import sys
 from math import sqrt
 
 # get initial centroids from a txt file and add them in an array
-
-
 def getCentroids(filepath):
     centroids = []
 
@@ -30,8 +34,6 @@ def getCentroids(filepath):
     return centroids
 
 # create clusters based on initial centroids
-
-
 def createClusters(centroids):
 
     for line in sys.stdin:

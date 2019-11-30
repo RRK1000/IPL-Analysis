@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 """mapper.py"""
 
+"""
+This is the mapper file
+It takes in the bowler data file as input and generates the output in the following format:
+cluster_id  bowler_name    param1  param2
+"""
+
 import sys
 from math import sqrt
 

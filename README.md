@@ -16,7 +16,7 @@ We also use collaborative filtering to predict the probabilities for unseen bats
 ## **Running the code**
 * The first files to be generated are the data files using the codes in `/data/`
 * All the code is available in `/src/` . The way to execute is, execute `./run.sh` from both, the batsmen and bowler directories. This runs the k-means code using MapReduce.
-* [IMPLEMENT COLLABORATIVE FILTERING]
-* [IMPLEMENT PROBABILITY CALCULATION]
-* [IMPLEMENT MATCH SIMULATION]
+* [PLS MAKE A CF ./run.sh FILE]
+* [CHANGE FOLDER STRUCTURE SO THATCF IS A SEPARATE FOLDER AND PROBCALC IS A SEPARATE FOLDER]
+* [FINISH MATCH SIMULATION]
 * [IMPLEMENT ACCURACY CALCULATION]

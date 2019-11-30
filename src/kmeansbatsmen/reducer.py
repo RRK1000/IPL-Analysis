@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 """reducer.py"""
 
+"""
+This is the reducer file.
+It gets sorted data from the mapper and calculates the new centroids file in the follwing manner:
+    get centroid from input
+    while centroid stays same, keep getting new centroids and summing up data while keeping count
+    if centroid changes, calculate previous centroid, write to centroids file and start loop again
+"""
+
 import sys
 
 

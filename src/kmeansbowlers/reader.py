@@ -1,3 +1,8 @@
+"""
+This file is used to calculate the difference between the newly generated centroids and the
+previous centroids and return a flag to signify if the centroids have stayed constant
+"""
+
 from mapper import getCentroids
 
 # check if distance of centroids and centroids1 is less than 1

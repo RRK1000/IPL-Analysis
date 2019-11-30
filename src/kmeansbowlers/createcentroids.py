@@ -1,3 +1,10 @@
+'''
+This file is used to generate initial centroids
+
+The way this is being done is that the max of each feature is taken and there are
+k centroids being places equidistant starting from (0,0) till (maxa, maxb)
+'''
+
 fd = open("bowlerdata.csv", "r")
 new = open("centroids.txt", "w+")
 
