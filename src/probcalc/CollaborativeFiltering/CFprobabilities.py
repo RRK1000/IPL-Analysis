@@ -1,4 +1,4 @@
-def generateProbabilities():
+def CFprobabilities():
     d0 = open("./data/p0_pred.csv", "r")
     d1 = open("./data/p1_pred.csv", "r")
     d2 = open("./data/p2_pred.csv", "r")
@@ -36,6 +36,6 @@ def generateProbabilities():
 
     return finalProb
 
-# prob = generateProbabilities()
+# prob = CFprobabilities()
 # for i in prob.items():
 #     print(i)

@@ -1,7 +1,7 @@
 import time
 
 def getKMeansClusters():
-    data = open("../../data/alldata2017.csv", "r")
+    data = open("../../../data/alldata2017.csv", "r")
     batsmanData = open("../../batsmanKMeansOutput.txt", "r")
     bowlerData = open("../../bowlerKMeansOutput.txt", "r")
 
@@ -66,8 +66,8 @@ def getKMeansClusters():
         newsum = 0
         for i in range(6):
             newsum += probs[key][i]
-        probs[key][7] = 1 - newsum
-        newsum += probs[key][7]
+        probs[key][6] = 1 - newsum
+        newsum += probs[key][6]
 
         probs[key]["W"] = probs[key]["W"]/probs[key]["B"]
         # print(newsum)
