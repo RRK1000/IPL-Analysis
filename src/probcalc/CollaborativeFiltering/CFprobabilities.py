@@ -21,14 +21,14 @@ def CFprobabilities():
     finalProb = {}
 
     for i in range(length):
-        p0 = abs(float(lines0[i].split(',')[2]))
-        p1 = abs(float(lines1[i].split(',')[2]))
-        p2 = abs(float(lines2[i].split(',')[2]))
-        p3 = abs(float(lines3[i].split(',')[2]))
-        p4 = abs(float(lines4[i].split(',')[2]))
-        p5 = abs(float(lines5[i].split(',')[2]))
-        p6 = abs(float(lines6[i].split(',')[2]))
-        pw = abs(float(linesw[i].split(',')[2]))
+        p0 = float(lines0[i].split(',')[2]) if float(lines0[i].split(',')[2]) > 0 else 0.0
+        p1 = float(lines1[i].split(',')[2]) if float(lines1[i].split(',')[2]) > 0 else 0.0
+        p2 = float(lines2[i].split(',')[2]) if float(lines2[i].split(',')[2]) > 0 else 0.0
+        p3 = float(lines3[i].split(',')[2]) if float(lines3[i].split(',')[2]) > 0 else 0.0
+        p4 = float(lines4[i].split(',')[2]) if float(lines4[i].split(',')[2]) > 0 else 0.0
+        p5 = float(lines5[i].split(',')[2]) if float(lines5[i].split(',')[2]) > 0 else 0.0
+        p6 = float(lines6[i].split(',')[2]) if float(lines6[i].split(',')[2]) > 0 else 0.0
+        pw = float(linesw[i].split(',')[2]) if float(linesw[i].split(',')[2]) > 0 else 0.0
 
         batsman = lines0[i].split(',')[0]
         bowler = lines0[i].split(',')[1]
@@ -38,7 +38,7 @@ def CFprobabilities():
             try:
                 probdict[i] = probdict[i]/sum(probdict)
             except ZeroDivisionError: #NEEDS TO BE CHANGED
-                # print(batsman, bowler, sep=", ")
+                print(batsman, bowler, sep=", ")
                 probdict[i] = 1.0/6
         probdict[6] = 1 - sum(probdict[:6])
 
@@ -59,6 +59,6 @@ def CFprobabilities():
 
     return finalProb
 
-# prob = CFprobabilities()
+prob = CFprobabilities()
 # for key in prob.keys():
 #     print(key, prob[key])

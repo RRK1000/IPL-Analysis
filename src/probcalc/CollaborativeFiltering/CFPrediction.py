@@ -29,6 +29,9 @@ from pyspark.mllib.recommendation import ALS, MatrixFactorizationModel, Rating
 
 if __name__ == "__main__":
     fp = open("./data/p"+str(sys.argv[1])+"_pred.csv", "w")
+    batsman = open("./data/batsman_index.csv", "r")
+    bowler = open("./data/bowler_index.csv", "r")
+
     sc = SparkContext(appName="PythonCollaborativeFilteringExample")
     # $example on$
     # Load and parse the data
@@ -39,20 +42,23 @@ if __name__ == "__main__":
     bowlers = {}
     b2 = {}
     bowlers_index =0
-    for line in data.collect():
+    for line in batsman.readlines():
         line = line.split(',')
-        if(line[0] not in b1.keys()):
+        if(line[0] not in batsmen.values()):
             batsmen[batsmen_index] = line[0]
             b1[line[0]] = batsmen_index
             batsmen_index+=1
-
-        if(line[1] not in b2.keys()):
-            bowlers[bowlers_index] = line[1]
-            b2[line[1]] = bowlers_index
+    for line in bowler.readlines():
+        line = line.split(',')
+        if(line[0] not in bowlers.values()):
+            bowlers[bowlers_index] = line[0]
+            b2[line[0]] = bowlers_index
             bowlers_index+=1
 
+    
+    
     ratings = data.map(lambda l: l.split(','))\
-        .map(lambda l: Rating(b1[l[0]], b2[l[1]], float(l[2])))
+        .map(lambda l: Rating(b1[l[0]], b2[l[1]], float(l[2].rstrip('\n'))))
 
     # Build the recommendation model using Alternating Least Squares
     rank = 10
@@ -64,6 +70,7 @@ if __name__ == "__main__":
     predictions = model.predictAll(testdata).map(lambda r: ((r[0], r[1]), r[2]))
     ratesAndPreds = ratings.map(lambda r: ((r[0], r[1]), r[2])).join(predictions)
     for item in predictions.collect():
+        print(item)
         fp.write(batsmen[item[0][0]]+','+bowlers[item[0][1]]+',' + str(item[1])+'\n')
 
     MSE = ratesAndPreds.map(lambda r: (r[1][0] - r[1][1])**2).mean()
@@ -72,5 +79,4 @@ if __name__ == "__main__":
     # Save and load model
     model.save(sc, "models/target"+str(sys.argv[1])+"/tmp/myCollaborativeFilter")
     sameModel = MatrixFactorizationModel.load(sc, "models/target"+str(sys.argv[1])+"/tmp/myCollaborativeFilter")
-    fp.close()
     # $example off$
