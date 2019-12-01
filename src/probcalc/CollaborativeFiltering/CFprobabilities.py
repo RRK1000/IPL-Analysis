@@ -38,7 +38,7 @@ def CFprobabilities():
             try:
                 probdict[i] = probdict[i]/sum(probdict)
             except ZeroDivisionError: #NEEDS TO BE CHANGED
-                print(bowler, batsman, sep=", ")
+                # print(batsman, bowler, sep=", ")
                 probdict[i] = 1.0/6
         probdict[6] = 1 - sum(probdict[:6])
 
@@ -59,6 +59,6 @@ def CFprobabilities():
 
     return finalProb
 
-prob = CFprobabilities()
-for key in prob.keys():
-    print(key, prob[key])
+# prob = CFprobabilities()
+# for key in prob.keys():
+#     print(key, prob[key])

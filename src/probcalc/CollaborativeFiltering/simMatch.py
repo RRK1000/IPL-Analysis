@@ -2,6 +2,7 @@ import random
 from CumulativeProb import CP
 from CFprobabilities import *
 import math
+import sys
 
 
 def CalculateRuns(r, batsman_1, bowler, cumulative_prob):
