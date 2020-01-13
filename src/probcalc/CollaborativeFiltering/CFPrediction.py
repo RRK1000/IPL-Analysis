@@ -28,7 +28,7 @@ from pyspark.mllib.recommendation import ALS, MatrixFactorizationModel, Rating
 # $example off$
 
 if __name__ == "__main__":
-    fp = open("./data/p"+str(sys.argv[1])+"_pred.csv", "w")
+    fp = open("./data/p"+str(sys.argv[1])+"_pred.csv", "w+")
     batsman = open("./data/batsman_index.csv", "r")
     bowler = open("./data/bowler_index.csv", "r")
 
@@ -42,17 +42,16 @@ if __name__ == "__main__":
     bowlers = {}
     b2 = {}
     bowlers_index =0
-    for line in batsman.readlines():
+    for line in data.collect():
         line = line.split(',')
-        if(line[0] not in batsmen.values()):
+        if(line[0] not in list(batsmen.values())):
             batsmen[batsmen_index] = line[0]
             b1[line[0]] = batsmen_index
             batsmen_index+=1
-    for line in bowler.readlines():
-        line = line.split(',')
-        if(line[0] not in bowlers.values()):
-            bowlers[bowlers_index] = line[0]
-            b2[line[0]] = bowlers_index
+
+        if(line[1] not in list(bowlers.values())):
+            bowlers[bowlers_index] = line[1]
+            b2[line[1]] = bowlers_index
             bowlers_index+=1
 
     
@@ -65,16 +64,43 @@ if __name__ == "__main__":
     numIterations = 10
     model = ALS.train(ratings, rank, numIterations)
 
-    # Evaluate the model on training data
-    testdata = ratings.map(lambda p: (p[0], p[1]))
-    predictions = model.predictAll(testdata).map(lambda r: ((r[0], r[1]), r[2]))
-    ratesAndPreds = ratings.map(lambda r: ((r[0], r[1]), r[2])).join(predictions)
-    for item in predictions.collect():
-        print(item)
-        fp.write(batsmen[item[0][0]]+','+bowlers[item[0][1]]+',' + str(item[1])+'\n')
 
-    MSE = ratesAndPreds.map(lambda r: (r[1][0] - r[1][1])**2).mean()
-    print("Mean Squared Error = " + str(MSE))
+    bat1 = open("Team1bats.csv", "r")
+    bat2 = open("Team2bats.csv", "r")
+    bowl1 = open("Team1bowl.csv", "r")
+    bowl2 = open("Team2bowl.csv", "r")
+    x = y = []
+    for line in bowl1:
+        x.append(b2[line.rstrip('\n')])
+    for line in bat1:
+        y.append(b1[line.rstrip('\n')])
+    for i in x:
+        for j in y:
+            p = model.predict(j,i)
+            print(batsmen[j]+','+bowlers[i]+','+str(p))
+            fp.write(batsmen[j]+','+bowlers[i]+','+str(p)+'\n')
+    x = y = []
+    for line in bowl2:
+        x.append(b2[line.rstrip('\n')])
+    for line in bat2:
+        y.append(b1[line.rstrip('\n')])
+    for i in x:
+        for j in y:
+            p = model.predict(j,i)
+            print(batsmen[j]+','+bowlers[i]+','+str(p))
+            fp.write(batsmen[j]+','+bowlers[i]+','+str(p)+'\n')
+
+    
+    # Evaluate the model on training data
+    # testdata = ratings.map(lambda p: (p[0], p[1]))
+    # predictions = model.predictAll(testdata).map(lambda r: ((r[0], r[1]), r[2]))
+    # ratesAndPreds = ratings.map(lambda r: ((r[0], r[1]), r[2])).join(predictions)
+    # for item in predictions.collect():
+    #     print(item)
+    #     fp.write(batsmen[item[0][0]]+','+bowlers[item[0][1]]+',' + str(item[1])+'\n')
+
+    # MSE = ratesAndPreds.map(lambda r: (r[1][0] - r[1][1])**2).mean()
+    # print("Mean Squared Error = " + str(MSE))
 
     # Save and load model
     model.save(sc, "models/target"+str(sys.argv[1])+"/tmp/myCollaborativeFilter")

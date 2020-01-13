@@ -61,11 +61,13 @@ def Innings1():
         		wicket_prob[(batsman_1, bowler)] = tmp * (1 - clustering_prob[(batsman_1, bowler)]["W"])
     		if(wicket_prob[(batsman_1, bowler)] < 0.7):
         		print("%d.%d\t%s\t%s\tW" % (overs,b,batsman_1,bowler))
-        		
-        		wickets += 1
-        		batting_index += 1
-        		batsman_1 = batsmanOrder[batting_index].rstrip("\n")
-        		ball_score = 0
+        		try:
+        			wickets += 1
+        			batting_index += 1
+        			batsman_1 = batsmanOrder[batting_index].rstrip("\n")
+        			ball_score = 0
+        		except IndexError:
+        			return score+1
     		else:
         		r = random.uniform(0.1, 0.9999)  
         		ball_score = CalculateRuns(r, batsman_1, bowler, cumulative_prob)
@@ -133,11 +135,20 @@ def Innings2(Target):
         		wicket_prob[(batsman_1, bowler)] = tmp * (1 - clustering_prob[(batsman_1, bowler)]["W"])
     		if(wicket_prob[(batsman_1, bowler)] < 0.7):
         		print("%d.%d\t%s\t%s\tW" % (overs,b,batsman_1,bowler))
-        		
-        		wickets += 1
-        		batting_index += 1
-        		batsman_1 = batsmanOrder[batting_index].rstrip("\n")
-        		ball_score = 0
+        		try:
+        			wickets += 1
+        			batting_index += 1
+        			batsman_1 = batsmanOrder[batting_index].rstrip("\n")
+        			ball_score = 0
+        		except:
+        			print("Final Score :",score)
+        			if(score == Target):
+        				print("Tie")
+        			elif(Target > score):
+        				print("Team 1 wins by %d runs"%(Target-score))
+        			elif(Target < score):
+        				print("Team 2 wins by %d wickets"%(10-wickets))
+        			return
     		else:
         		r = random.uniform(0.1, 0.9999)  
         		ball_score = CalculateRuns(r, batsman_1, bowler, cumulative_prob)
